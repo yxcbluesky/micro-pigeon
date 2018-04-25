@@ -23,6 +23,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter {
         System.out.println("客户端接收消息" + msg);
     }
 
+    @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         ctx.writeAndFlush(firstMessage);
     }
