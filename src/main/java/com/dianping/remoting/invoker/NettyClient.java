@@ -1,6 +1,6 @@
-package com.dianping.invoker;
+package com.dianping.remoting.invoker;
 
-import com.dianping.invoker.handler.NettyClientHandler;
+import com.dianping.remoting.invoker.handler.NettyClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

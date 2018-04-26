@@ -1,4 +1,4 @@
-package com.dianping.provider.handler;
+package com.dianping.remoting.provider.handler;
 
 
 import io.netty.channel.ChannelHandlerContext;

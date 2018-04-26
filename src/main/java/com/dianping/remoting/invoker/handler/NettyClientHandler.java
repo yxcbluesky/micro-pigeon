@@ -1,4 +1,4 @@
-package com.dianping.invoker.handler;
+package com.dianping.remoting.invoker.handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

@@ -1,4 +1,4 @@
-package com.dianping.provider;
+package com.dianping.remoting.provider;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.dianping.invoker;
+package com.dianping.remoting.invoker;
 
 /**
  * Created by fang on 2018/4/25.

@@ -1,6 +1,6 @@
-package com.dianping.provider;
+package com.dianping.remoting.provider;
 
-import com.dianping.provider.handler.NettyServerHandler;
+import com.dianping.remoting.provider.handler.NettyServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
