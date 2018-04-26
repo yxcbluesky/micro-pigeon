@@ -11,9 +11,11 @@ public class InvokerConfig<T> {
 
     private Class<T> serviceInterface;
     private byte serialize;
+    private ClassLoader classLoader;
 
     public InvokerConfig(Class<T> serviceInterface) {
         this.serviceInterface = serviceInterface;
         this.serialize = SerializerType.HESSIAN.getCode();
+        classLoader = serviceInterface.getClassLoader();
     }
 }

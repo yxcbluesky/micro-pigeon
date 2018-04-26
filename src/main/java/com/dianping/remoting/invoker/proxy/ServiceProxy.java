@@ -2,6 +2,7 @@ package com.dianping.remoting.invoker.proxy;
 
 import com.dianping.remoting.invoker.config.InvokerConfig;
 
+import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,7 +21,7 @@ public class ServiceProxy {
         Object service = services.get(invokerConfig);
 
         if (service == null) {
-            // TODO: 2018/4/26 创建代理类对象 
+            Proxy.newProxyInstance();
         }
         return null;
     }
