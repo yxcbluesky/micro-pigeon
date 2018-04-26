@@ -2,6 +2,8 @@ package com.dianping.remoting.invoker.proxy;
 
 import com.dianping.remoting.invoker.config.InvokerConfig;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -22,9 +24,14 @@ public class ServiceProxy {
 
         if (service == null) {
             service = Proxy.newProxyInstance(invokerConfig.getClassLoader(),
-                    new Class[] { invokerConfig.getServiceInterface() },
-
-                    );
+                    new Class[]{invokerConfig.getServiceInterface()},
+                    new InvocationHandler() {
+                        @Override
+                        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                            return null;
+                        }
+                    }
+            );
         }
         return null;
     }
