@@ -21,7 +21,10 @@ public class ServiceProxy {
         Object service = services.get(invokerConfig);
 
         if (service == null) {
-            Proxy.newProxyInstance();
+            service = Proxy.newProxyInstance(invokerConfig.getClassLoader(),
+                    new Class[] { invokerConfig.getServiceInterface() },
+
+                    );
         }
         return null;
     }
