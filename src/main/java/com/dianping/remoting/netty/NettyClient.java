@@ -12,6 +12,11 @@ public class NettyClient implements Client {
     private String remotePort;
     private ClientBootstrap bootstrap;
 
+    public NettyClient(String remoteHost, String remotePort) {
+        this.remoteHost = remoteHost;
+        this.remotePort = remotePort;
+    }
+
     @Override
     public void open() {
 
