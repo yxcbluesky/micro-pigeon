@@ -19,6 +19,7 @@ public class ServiceProxy {
      */
     private static final Map<InvokerConfig<?>, Object> services = new ConcurrentHashMap<>();
 
+    @SuppressWarnings("unchecked")
     public <T> T getProxy(InvokerConfig<T> invokerConfig) {
 
         Object service = services.get(invokerConfig);
@@ -27,7 +28,7 @@ public class ServiceProxy {
             startup();
             service = proxyRequest(invokerConfig);
         }
-        return null;
+        return (T) service;
     }
 
     private void startup() {
