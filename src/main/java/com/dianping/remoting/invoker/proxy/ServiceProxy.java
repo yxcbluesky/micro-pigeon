@@ -4,8 +4,6 @@ import com.dianping.remoting.invoker.config.InvokerConfig;
 import com.dianping.remoting.invoker.process.InvokerProcessHandlerFactory;
 import com.dianping.remoting.invoker.service.ServiceInvocationProxyHandler;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,10 +23,15 @@ public class ServiceProxy {
         Object service = services.get(invokerConfig);
 
         if (service == null) {
+            startup();
             service = Proxy.newProxyInstance(invokerConfig.getClassLoader(),
                     new Class[]{invokerConfig.getServiceInterface()},
                     new ServiceInvocationProxyHandler(InvokerProcessHandlerFactory.getInvocationHandler(), invokerConfig));
         }
         return null;
+    }
+
+    private void startup() {
+        InvokerProcessHandlerFactory.init();
     }
 }
