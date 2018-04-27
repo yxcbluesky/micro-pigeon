@@ -1,5 +1,7 @@
 package com.dianping.remoting.invoker.process;
 
+import com.dianping.remoting.common.domain.InvocationContext;
+import com.dianping.remoting.common.domain.InvocationResponse;
 import com.dianping.remoting.common.process.ServiceInvocationHandler;
 import com.dianping.remoting.invoker.process.filter.ContextPrepareInvocationFilter;
 import com.dianping.remoting.invoker.process.filter.InvokerInvocationFilter;
@@ -25,11 +27,27 @@ public class InvokerProcessHandlerFactory {
                     filters.add(new ContextPrepareInvocationFilter());
                     filters.add(new RemoteCallInvocationFilter());
                 }
+                isStarted = true;
             }
         }
     }
 
     public static ServiceInvocationHandler getInvocationHandler() {
         return handler;
+    }
+
+    private static void createHandler() {
+        ServiceInvocationHandler last = null;
+        for (int i = filters.size() - 1; i >= 0; i--) {
+            final InvokerInvocationFilter cur = filters.get(i);
+            final ServiceInvocationHandler next = last;
+            last = new ServiceInvocationHandler() {
+                @Override
+                public InvocationResponse handle(InvocationContext ctx) {
+                    return cur.invoke(next, ctx);
+                }
+            };
+        }
+        handler = last;
     }
 }
