@@ -1,5 +1,6 @@
 package com.dianping.remoting.invoker.proxy;
 
+import com.dianping.remoting.common.domain.InvocationContext;
 import com.dianping.remoting.invoker.config.InvokerConfig;
 import com.dianping.remoting.invoker.process.InvokerProcessHandlerFactory;
 import com.dianping.remoting.invoker.service.ServiceInvocationProxyHandler;
@@ -24,14 +25,19 @@ public class ServiceProxy {
 
         if (service == null) {
             startup();
-            service = Proxy.newProxyInstance(invokerConfig.getClassLoader(),
-                    new Class[]{invokerConfig.getServiceInterface()},
-                    new ServiceInvocationProxyHandler(InvokerProcessHandlerFactory.getInvocationHandler(), invokerConfig));
+            service = proxyRequest(invokerConfig);
         }
         return null;
     }
 
     private void startup() {
         InvokerProcessHandlerFactory.init();
+    }
+
+    private <T> Object proxyRequest(InvokerConfig<T> invokerConfig) {
+        return Proxy.newProxyInstance(invokerConfig.getClassLoader(),
+                new Class[]{invokerConfig.getServiceInterface()},
+                new ServiceInvocationProxyHandler(InvokerProcessHandlerFactory.getInvocationHandler(), new InvocationContext() {
+                }));
     }
 }

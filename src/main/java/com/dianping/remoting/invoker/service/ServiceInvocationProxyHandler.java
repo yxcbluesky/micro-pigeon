@@ -1,6 +1,7 @@
 package com.dianping.remoting.invoker.service;
 
 import com.dianping.remoting.common.domain.InvocationContext;
+import com.dianping.remoting.common.domain.InvocationResponse;
 import com.dianping.remoting.common.process.ServiceInvocationHandler;
 import lombok.AllArgsConstructor;
 
@@ -18,6 +19,7 @@ public class ServiceInvocationProxyHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        return handler.handle(invokerContext);
+        InvocationResponse response = handler.handle(invokerContext);
+        return null;
     }
 }
