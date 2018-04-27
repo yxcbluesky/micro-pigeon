@@ -1,6 +1,7 @@
 package com.dianping.remoting.invoker.process.filter;
 
 import com.dianping.remoting.common.domain.InvocationContext;
+import com.dianping.remoting.common.domain.InvocationResponse;
 import com.dianping.remoting.common.process.ServiceInvocationHandler;
 
 /**
@@ -9,7 +10,7 @@ import com.dianping.remoting.common.process.ServiceInvocationHandler;
 public class RemoteCallInvocationFilter implements InvokerInvocationFilter {
 
     @Override
-    public void invoke(ServiceInvocationHandler handler, InvocationContext ctx) {
-
+    public InvocationResponse invoke(ServiceInvocationHandler handler, InvocationContext ctx) {
+        return null;
     }
 }
