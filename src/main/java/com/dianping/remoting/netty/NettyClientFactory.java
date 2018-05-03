@@ -2,6 +2,7 @@ package com.dianping.remoting.netty;
 
 import com.dianping.remoting.invoker.Client;
 import com.dianping.remoting.invoker.ClientConfig;
+import com.dianping.remoting.util.NetUtil;
 import com.dianping.threadpool.DefaultThreadFactory;
 import com.google.common.collect.Maps;
 import org.jboss.netty.channel.ChannelFactory;
@@ -24,7 +25,13 @@ public class NettyClientFactory {
     private static final Map<String, Client> nettyClientRegistry = Maps.newConcurrentMap();
 
     public static Client getClient(String host, String port) {
-        return new NettyClient(host, port, getChannelFactory());
+        String address = NetUtil.getAddress(host, port);
+        if (nettyClientRegistry.containsKey(address)) {
+            return nettyClientRegistry.get(address);
+        }
+        Client client = new NettyClient(host, port, getChannelFactory());
+        nettyClientRegistry.put(address, client);
+        return client;
     }
 
     private static ChannelFactory getChannelFactory() {
