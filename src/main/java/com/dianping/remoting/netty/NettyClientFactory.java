@@ -18,8 +18,8 @@ public class NettyClientFactory {
 
     private static ClientConfig clientConfig = new ClientConfig();
 
-    public static Client create() {
-        return null;
+    public static Client create(String host, String port) {
+        return new NettyClient(host, port, getChannelFactory());
     }
 
     private static ChannelFactory getChannelFactory() {
