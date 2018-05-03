@@ -3,10 +3,13 @@ package com.dianping.remoting.netty;
 import com.dianping.remoting.invoker.Client;
 import com.dianping.remoting.invoker.ClientConfig;
 import com.dianping.threadpool.DefaultThreadFactory;
+import com.google.common.collect.Maps;
 import org.jboss.netty.channel.ChannelFactory;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import org.jboss.netty.channel.socket.nio.NioWorkerPool;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executors;
 
 /**
@@ -18,7 +21,9 @@ public class NettyClientFactory {
 
     private static ClientConfig clientConfig = new ClientConfig();
 
-    public static Client create(String host, String port) {
+    private static final Map<String, Client> nettyClientRegistry = Maps.newConcurrentMap();
+
+    public static Client getClient(String host, String port) {
         return new NettyClient(host, port, getChannelFactory());
     }
 
