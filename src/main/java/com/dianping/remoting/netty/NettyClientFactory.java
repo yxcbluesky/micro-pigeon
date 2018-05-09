@@ -9,7 +9,6 @@ import org.jboss.netty.channel.ChannelFactory;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import org.jboss.netty.channel.socket.nio.NioWorkerPool;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executors;
 

@@ -1,4 +1,4 @@
-package com.dianping.pigeon;
+package com.dianping;
 
 import com.dianping.remoting.invoker.config.InvokerConfig;
 import com.dianping.remoting.invoker.proxy.ServiceProxy;
